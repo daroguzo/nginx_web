@@ -1,0 +1,12 @@
+server:
+  port: 9999
+
+node1:
+  nginx_api:
+    ip: localhost
+    port: 8888
+
+node2:
+  nginx_api:
+    ip: localhost
+    port: 8889
