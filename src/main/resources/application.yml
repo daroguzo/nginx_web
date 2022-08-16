@@ -3,7 +3,7 @@ server:
 
 node1:
   nginx_api:
-    ip: localhost
+    ip: 192.168.1.200
     port: 8888
 
 node2:

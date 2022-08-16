@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Nginx 기동 관리</title>
+    <style>
+        * {
+            font-size: 16px;
+            font-family: Consolas, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div th:if="${!isRun}">
+        <p>
+            NginX가 기동중이 아닙니다! 상태를 확인해주세요.
+        </p>
+
+        <h2>기동 관리</h2>
+        <form action="/nginx/web/management/start" method="post">
+            <p>
+                <input type="submit" value="기동">
+            </p>
+        </form>
+        <form action="/nginx/web/management/stop" method="post">
+            <p>
+                <input type="submit" value="정지">
+            </p>
+        </form>
+        <form action="/nginx/web/management/reload" method="post">
+            <p>
+                <input type="submit" value="재기동">
+            </p>
+        </form>
+    </div>
+
+    <div th:if="${isRun}">
+        <h2>열려있는 포트 목록</h2>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>IP</th>
+                <th>Port</th>
+            </tr>
+            <tr th:each="openPort , index: ${openPortList}">
+                <td th:text="${index.index}">#</td>
+                <td th:text="${openPort.ip}">ip</td>
+                <td th:text="${openPort.port}">port</td>
+            </tr>
+        </table>
+
+        <div>
+            <h2>기동 관리</h2>
+            <form action="/nginx/web/management/start" method="post">
+                <p>
+                    <input type="submit" value="기동">
+                </p>
+            </form>
+            <form action="/nginx/web/management/stop" method="post">
+                <p>
+                    <input type="submit" value="정지">
+                </p>
+            </form>
+            <form action="/nginx/web/management/reload" method="post">
+                <p>
+                    <input type="submit" value="재기동">
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <p th:text="${result}"></p>
+
+</body>
+</html>
